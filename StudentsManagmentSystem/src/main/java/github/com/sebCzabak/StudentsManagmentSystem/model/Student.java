@@ -22,19 +22,7 @@ public class Student implements Serializable {
     private String phone;
     private String imgUrl;
     private studentClass studentClass;
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        final Student student = (Student) o;
-        return id != null && Objects.equals(id, student.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+    private String studentCode;
 
     @Override
     public String toString() {
@@ -46,6 +34,20 @@ public class Student implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", studentClass=" + studentClass +
+                ", studentCode='" + studentCode + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final Student student = (Student) o;
+        return Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(email, student.email) && Objects.equals(classTitle, student.classTitle) && Objects.equals(phone, student.phone) && Objects.equals(imgUrl, student.imgUrl) && studentClass == student.studentClass && Objects.equals(studentCode, student.studentCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, classTitle, phone, imgUrl, studentClass, studentCode);
     }
 }
